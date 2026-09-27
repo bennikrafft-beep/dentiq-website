@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DentIQ | Hagelschaden-Kalkulator für Ausbeuler und PDR-Techniker</title>
+  <meta name="description" content="DentIQ ist die App für Ausbeuler und PDR-Techniker: Hagelschäden pro Bauteil erfassen, Preis nach AW sofort sehen und das PDF-Angebot direkt beim Kunden verschicken. 7 Tage kostenlos testen.">
+  <link rel="canonical" href="https://dentiq.cloud/">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0c0e" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6809597661">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="DentIQ">
+  <meta property="og:title" content="DentIQ | Hagelschaden kalkuliert. Angebot verschickt.">
+  <meta property="og:description" content="Die App für Ausbeuler und PDR-Techniker: Dellen pro Bauteil antippen, Preis sofort sehen, PDF-Angebot noch beim Kunden verschicken.">
+  <meta property="og:url" content="https://dentiq.cloud/">
+  <meta property="og:image" content="https://dentiq.cloud/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/schaden.jpg" as="image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "DentIQ",
+    "alternateName": "DentIQ - Der Dellen Kalkulator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS, iPadOS, Android",
+    "description": "Hagelschaden-Kalkulator für Ausbeuler und PDR-Techniker: Dellen pro Bauteil erfassen, Preis nach Arbeitswerten berechnen und PDF-Angebote verschicken.",
+    "url": "https://dentiq.cloud/",
+    "image": "https://dentiq.cloud/assets/img/app-icon.png",
+    "inLanguage": "de",
+    "offers": [
+      { "@type": "Offer", "name": "DentIQ Pro monatlich", "price": "24.99", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "DentIQ Pro jährlich", "price": "249.99", "priceCurrency": "EUR" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Für wen ist DentIQ gedacht?", "acceptedAnswer": { "@type": "Answer", "text": "Für Ausbeuler, PDR-Techniker und Smart-Repair-Betriebe, die Hagelschäden schnell und nachvollziehbar kalkulieren und direkt ein Angebot erstellen wollen." } },
+      { "@type": "Question", "name": "Wie rechnet DentIQ den Preis aus?", "acceptedAnswer": { "@type": "Answer", "text": "Du tippst pro Bauteil die Dellengrößen von 10 bis 80 mm an und gibst die Anzahl ein. DentIQ ermittelt daraus die Arbeitswerte (AW) und rechnet sie mit deinem Stundenlohn und deinem Teiler (10er oder 12er) in Euro oder Franken um." } },
+      { "@type": "Question", "name": "Kann ich meine eigenen Preise verwenden?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Stundenlohn, Teiler-Gruppe, Mehrwertsteuersatz und Währung legst du in den Einstellungen fest. Pro Angebot kannst du zusätzlich einen Festpreis oder einen abweichenden Stundenlohn vergeben." } },
+      { "@type": "Question", "name": "Brauche ich ein Konto?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. DentIQ funktioniert ohne Registrierung. Deine Kunden und Angebote liegen auf deinem Gerät." } },
+      { "@type": "Question", "name": "Was kostet DentIQ?", "acceptedAnswer": { "@type": "Answer", "text": "Du testest DentIQ Pro 7 Tage kostenlos. Danach wählst du zwischen Monatsabo und Jahresabo. Das Jahresabo enthält 2 Monate geschenkt. Beide sind jederzeit über App Store oder Google Play kündbar." } },
+      { "@type": "Question", "name": "Funktioniert DentIQ auch in der Schweiz?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Du kannst in den Einstellungen CHF als Währung wählen. Beträge erscheinen dann im Schweizer Format, zum Beispiel 1'234.50 CHF." } }
+    ]
+  }
+  </script>
+
+  <style>
+    @font-face {
+      font-family: "Geist";
+      src: url("assets/fonts/Geist-Variable.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --surface-2: #f1f1f2;
+      --text: #18181b;
+      --muted: #5b5b63;
+      --line: #e3e3e6;
+      --gold: #c5a875;          /* Markenfarbe aus der App */
+      --gold-ink: #7a6130;      /* dunkle Variante für Text auf hellem Grund */
+      --gold-soft: #f3ecdf;
+      --on-gold: #18181b;
+      --shadow: 0 24px 60px -24px rgb(24 24 27 / .28);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0e;
+        --surface: #151518;
+        --surface-2: #1c1c20;
+        --text: #f2f2f3;
+        --muted: #a1a1aa;
+        --line: #2a2a2f;
+        --gold-ink: #d9bf8f;
+        --gold-soft: #231e15;
+        --shadow: 0 24px 60px -24px rgb(0 0 0 / .7);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .icon { width: 1em; height: 1em; flex: none; }
+    .icon svg { width: 100%; height: 100%; display: block; }
+    h1, h2, h3 { margin: 0; letter-spacing: -0.025em; line-height: 1.1; font-weight: 700; }
+    h2 { font-size: clamp(30px, 4vw, 44px); }
+    p { margin: 0; }
+    .muted { color: var(--muted); }
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold-ink);
+    }
+
+    /* Buttons: alle voll abgerundet (Pill), Karten 20px, Bilder 36px (Handy-Rahmen) */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 22px; border-radius: 999px;
+      font: inherit; font-weight: 600; font-size: 16px; white-space: nowrap;
+      text-decoration: none; border: 1px solid transparent;
+      transition: transform .2s cubic-bezier(.16,1,.3,1), background-color .2s, border-color .2s;
+    }
+    .btn:active { transform: translateY(1px) scale(.98); }
+    .btn .icon { font-size: 22px; }
+    .btn-primary { background: var(--gold); color: var(--on-gold); }
+    .btn-primary:hover { background: #d3b886; }
+    .btn-ghost { border-color: var(--line); background: var(--surface); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--gold); }
+
+    /* Navigation */
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(160%) blur(14px);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+      border-bottom: 1px solid transparent;
+    }
+    .nav .wrap { display: flex; align-items: center; gap: 32px; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    .nav-links { display: flex; gap: 28px; margin-left: auto; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); }
+    .nav .btn { padding: 10px 18px; font-size: 15px; }
+
+    /* Hero */
+    .hero { padding: 56px 0 88px; overflow: hidden; }
+    .hero .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 56px; align-items: center; }
+    .hero h1 { font-size: clamp(38px, 3.9vw, 50px); margin: 18px 0 20px; }
+    .hero h1 .line { display: block; }
+    .hero h1 em { font-style: normal; color: var(--gold-ink); }
+    .hero .lead { font-size: 19px; color: var(--muted); max-width: 30ch; }
+    .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .phones { position: relative; height: 620px; }
+    .phone {
+      position: absolute; width: 280px;
+      border-radius: 40px; padding: 9px;
+      background: #1b1b1f;
+      box-shadow: var(--shadow), inset 0 0 0 1px rgb(255 255 255 / .08);
+    }
+    .phone img { border-radius: 32px; aspect-ratio: 1206 / 2622; object-fit: cover; object-position: top; width: 100%; }
+    .phones .p1 { right: 150px; top: 0; z-index: 2; }
+    .phones .p2 { right: 0; top: 70px; width: 250px; }
+
+    /* Ablauf */
+    .flow { padding: 96px 0; background: var(--surface); border-block: 1px solid var(--line); }
+    .flow h2 { max-width: 18ch; }
+    .flow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 56px; align-items: start; }
+    .flow-item:nth-child(2) { margin-top: 64px; }
+    .flow-item:nth-child(3) { margin-top: 128px; }
+    .flow-item .phone { position: relative; width: 100%; max-width: 280px; }
+    .flow-item h3 { font-size: 22px; margin: 28px 0 8px; }
+    .flow-item p { color: var(--muted); max-width: 34ch; }
+
+    /* Funktionen (Bento) */
+    .features { padding: 104px 0; }
+    .features h2 { max-width: 20ch; margin-bottom: 48px; }
+    .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+    .cell {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px; display: flex; flex-direction: column; gap: 12px; overflow: hidden;
+    }
+    .cell h3 { font-size: 21px; }
+    .cell p { color: var(--muted); font-size: 16px; }
+    .cell .icon { font-size: 30px; color: var(--gold-ink); }
+    .c-wide { grid-column: span 4; }
+    .c-mid { grid-column: span 3; }
+    .c-small { grid-column: span 2; }
+    .c-gold { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+    .c-gold p, .c-gold .icon { color: rgb(24 24 27 / .78); }
+    .c-image { padding: 0; flex-direction: row; background: var(--gold-soft); border-color: transparent; }
+    .c-image .txt { padding: 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .c-image .shot { width: 40%; align-self: flex-end; margin-right: 28px; margin-top: 28px; height: 300px; overflow: hidden; border-radius: 18px 18px 0 0; box-shadow: var(--shadow); }
+    .c-image .shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+    .chip { font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); }
+
+    /* Daten */
+    .data { padding: 24px 0 104px; }
+    .data .box {
+      border-radius: var(--radius); padding: 56px;
+      background: var(--surface); border: 1px solid var(--line);
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
+    }
+    .data h2 { font-size: clamp(28px, 3.4vw, 38px); }
+    .data ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+    .data li { display: flex; gap: 14px; align-items: flex-start; }
+    .data li .icon { font-size: 22px; color: var(--gold-ink); margin-top: 3px; }
+    .data li strong { display: block; }
+    .data li span { color: var(--muted); font-size: 16px; }
+
+    /* Preise */
+    .pricing { padding: 104px 0; background: var(--surface); border-block: 1px solid var(--line); }
+    .pricing .head { max-width: 640px; }
+    .pricing .head p { color: var(--muted); margin-top: 16px; font-size: 18px; }
+    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; max-width: 860px; }
+    .plan { border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; background: var(--bg); position: relative; }
+    .plan.best { border: 2px solid var(--gold); }
+    .plan .badge {
+      position: absolute; top: -14px; right: 24px;
+      background: var(--gold); color: var(--on-gold);
+      font-size: 13px; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+    }
+    .plan h3 { font-size: 20px; }
+    .plan .price { font-size: 44px; font-weight: 700; letter-spacing: -0.03em; margin-top: 12px; }
+    .plan .price small { font-size: 17px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+    .plan .per { color: var(--muted); font-size: 15px; min-height: 24px; }
+    .plan ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
+    .plan li { display: flex; gap: 10px; align-items: center; font-size: 16px; }
+    .plan li .icon { color: var(--gold-ink); font-size: 18px; }
+    .note { color: var(--muted); font-size: 14px; margin-top: 24px; max-width: 860px; }
+
+    /* FAQ */
+    .faq { padding: 104px 0; }
+    .faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+    .faq-list { border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary {
+      list-style: none; cursor: pointer; padding: 22px 0;
+      display: flex; justify-content: space-between; gap: 24px;
+      font-size: 18px; font-weight: 600;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--gold-ink); font-size: 24px; line-height: 1; transition: transform .25s cubic-bezier(.16,1,.3,1); }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { color: var(--muted); padding: 0 0 22px; max-width: 62ch; }
+
+    /* Abschluss */
+    .final { padding: 0 0 104px; }
+    .final .box {
+      border-radius: var(--radius); padding: 64px 56px;
+      background: #141416; color: #f2f2f3;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+    }
+    .final h2 { max-width: 16ch; }
+    .final p { color: #a1a1aa; margin-top: 12px; }
+    .final .btn-ghost { background: transparent; color: #f2f2f3; border-color: #3a3a40; }
+
+    footer { border-top: 1px solid var(--line); padding: 36px 0 48px; font-size: 15px; color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* Bewegung: nur Einblenden beim Scrollen, respektiert "Bewegung reduzieren" */
+    @media (prefers-reduced-motion: no-preference) {
+      .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+      .js .reveal.in { opacity: 1; transform: none; }
+      .hero .phone { animation: rise .9s cubic-bezier(.16,1,.3,1) both; }
+      .hero .p2 { animation-delay: .12s; }
+      @keyframes rise { from { opacity: 0; transform: translateY(40px); } }
+    }
+
+    /* Tablet */
+    @media (max-width: 960px) {
+      .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+      .phones { height: 560px; max-width: 460px; }
+      .bento { grid-template-columns: repeat(2, 1fr); }
+      .c-wide, .c-mid { grid-column: span 2; }
+      .c-small { grid-column: span 1; }
+      .data .box, .faq .wrap { grid-template-columns: 1fr; }
+    }
+    /* Handy */
+    @media (max-width: 767px) {
+      body { font-size: 16px; }
+      .wrap { padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav .btn { margin-left: auto; }
+      .hero { padding: 32px 0 64px; }
+      .hero .lead { font-size: 17px; }
+      .phones { height: 480px; }
+      .phones .p1 { width: 220px; right: auto; left: 0; }
+      .phones .p2 { width: 190px; top: 60px; }
+      .flow, .features, .pricing, .faq { padding: 72px 0; }
+      .flow-grid { grid-template-columns: 1fr; gap: 56px; }
+      .flow-item:nth-child(n) { margin-top: 0; }
+      .flow-item .phone { max-width: 240px; }
+      .bento { grid-template-columns: 1fr; }
+      .c-wide, .c-mid, .c-small { grid-column: span 1; }
+      .c-image { flex-direction: column; }
+      .c-image .shot { width: 70%; margin: 0 auto; height: 260px; }
+      .data .box { padding: 32px 24px; }
+      .plans { grid-template-columns: 1fr; }
+      .final .box { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <script>document.documentElement.classList.add("js")</script>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="DentIQ Startseite">
+        <img src="assets/img/app-icon.png" alt="" width="34" height="34">
+        DentIQ
+      </a>
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#ablauf">Ablauf</a>
+        <a href="#funktionen">Funktionen</a>
+        <a href="#preise">Preise</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-primary" href="#preise">7 Tage gratis testen</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Für Ausbeuler und PDR-Techniker</span>
+          <h1><span class="line">Hagelschaden kalkuliert.</span> <em class="line">Angebot verschickt.</em></h1>
+          <p class="lead">Dellen pro Bauteil antippen, Preis sofort sehen und das PDF-Angebot noch beim Kunden verschicken.</p>
+          <div class="ctas">
+            <a class="btn btn-primary" href="https://apps.apple.com/app/id6809597661">
+              <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M223.3,169.59a8.07,8.07,0,0,0-2.8-3.4C203.53,154.53,200,134.64,200,120c0-17.67,13.47-33.06,21.5-40.67a8,8,0,0,0,0-11.62C208.82,55.74,187.82,48,168,48a72.2,72.2,0,0,0-40,12.13,71.56,71.56,0,0,0-90.71,9.09A74.63,74.63,0,0,0,16,123.4a127.06,127.06,0,0,0,40.14,89.73A39.8,39.8,0,0,0,83.59,224h87.68a39.84,39.84,0,0,0,29.12-12.57,125,125,0,0,0,17.82-24.6C225.23,174,224.33,172,223.3,169.59Zm-34.63,30.94a23.76,23.76,0,0,1-17.4,7.47H83.59a23.82,23.82,0,0,1-16.44-6.51A111.14,111.14,0,0,1,32,123,58.5,58.5,0,0,1,48.65,80.47,54.81,54.81,0,0,1,88,64h.78A55.45,55.45,0,0,1,123,76.28a8,8,0,0,0,10,0A55.44,55.44,0,0,1,168,64a70.64,70.64,0,0,1,36,10.35c-13,14.52-20,30.47-20,45.65,0,23.77,7.64,42.73,22.18,55.3A105.82,105.82,0,0,1,188.67,200.53ZM128.23,30A40,40,0,0,1,167,0h1a8,8,0,0,1,0,16h-1a24,24,0,0,0-23.24,18,8,8,0,1,1-15.5-4Z"/></svg></span>Im App Store laden
+            </a>
+            <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.dentiq.app">
+              <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M239.82,114.19,72,18.16a16,16,0,0,0-16.12,0A15.68,15.68,0,0,0,48,31.87V224.13a15.68,15.68,0,0,0,7.92,13.67,16,16,0,0,0,16.12,0l167.78-96a15.75,15.75,0,0,0,0-27.62ZM64,212.67V43.33L148.69,128Zm96-73.36,18.92,18.92-88.5,50.66ZM90.4,47.1l88.53,50.67L160,116.69ZM193.31,150l-22-22,22-22,38.43,22Z"/></svg></span>Bei Google Play laden
+            </a>
+          </div>
+        </div>
+        <div class="phones" aria-hidden="true">
+          <div class="phone p1"><img src="assets/img/schaden.jpg" alt="" width="780" height="1696"></div>
+          <div class="phone p2"><img src="assets/img/angebot.jpg" alt="" width="780" height="1696" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow" id="ablauf">
+      <div class="wrap">
+        <h2 class="reveal">Vom Hagelschaden zum Angebot in drei Schritten.</h2>
+        <div class="flow-grid">
+          <article class="flow-item reveal">
+            <div class="phone"><img src="assets/img/erfassung.jpg" alt="Schadenserfassung mit Fahrzeugskizze: Dach und Motorhaube erfasst" width="780" height="1696" loading="lazy"></div>
+            <h3>Bauteil antippen</h3>
+            <p>Auf der Fahrzeugskizze das Bauteil wählen, Dellengrößen von 10 bis 80 mm antippen und die Anzahl eintragen.</p>
+          </article>
+          <article class="flow-item reveal">
+            <div class="phone"><img src="assets/img/zusatz.jpg" alt="Zusatzleistungen wie Demontage, Rüstzeit und Finisharbeiten" width="780" height="1696" loading="lazy"></div>
+            <h3>Zusatzleistungen ergänzen</h3>
+            <p>Demontage, Verbringung, hohe Fahrzeuge, Rüstzeit und Finish mit einem Schalter dazunehmen.</p>
+          </article>
+          <article class="flow-item reveal">
+            <div class="phone"><img src="assets/img/pdf.jpg" alt="Fertiges PDF-Angebot mit Positionen, Arbeitswerten und Gesamtbetrag" width="780" height="1696" loading="lazy"></div>
+            <h3>PDF verschicken</h3>
+            <p>Das Angebot mit allen Positionen, Arbeitswerten und Mehrwertsteuer per Mail, Messenger oder AirDrop teilen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="funktionen">
+      <div class="wrap">
+        <h2 class="reveal">Alles, was eine Hagel-Kalkulation braucht.</h2>
+        <div class="bento">
+          <div class="cell c-image c-wide reveal">
+            <div class="txt">
+              <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M56,76a60,60,0,0,1,120,0,8,8,0,0,1-16,0,44,44,0,0,0-88,0,8,8,0,1,1-16,0Zm140,44a27.9,27.9,0,0,0-13.36,3.39A28,28,0,0,0,144,106.7V76a28,28,0,0,0-56,0v80l-3.82-6.13a28,28,0,0,0-48.41,28.17l29.32,50A8,8,0,1,0,78.89,220L49.6,170a12,12,0,1,1,20.78-12l.14.23,18.68,30A8,8,0,0,0,104,184V76a12,12,0,0,1,24,0v68a8,8,0,1,0,16,0V132a12,12,0,0,1,24,0v20a8,8,0,0,0,16,0v-4a12,12,0,0,1,24,0v36c0,21.61-7.1,36.3-7.16,36.42a8,8,0,0,0,3.58,10.73A7.9,7.9,0,0,0,208,232a8,8,0,0,0,7.16-4.42c.37-.73,8.85-18,8.85-43.58V148A28,28,0,0,0,196,120Z"/></svg></span>
+              <h3>Preis live beim Antippen</h3>
+              <p>Jede Eingabe zeigt sofort den Betrag. Berechnet nach Arbeitswerten mit deinem Stundenlohn und deinem 10er- oder 12er-Teiler.</p>
+            </div>
+            <div class="shot"><img src="assets/img/schaden.jpg" alt="Eingabe der Dellen am Dach mit Live-Preis" width="780" height="1696" loading="lazy"></div>
+          </div>
+          <div class="cell c-small c-gold reveal">
+            <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,61.64l-144,144a8,8,0,0,1-11.32-11.32l144-144a8,8,0,0,1,11.32,11.31ZM50.54,101.44a36,36,0,0,1,50.92-50.91h0a36,36,0,0,1-50.92,50.91ZM56,76A20,20,0,1,0,90.14,61.84h0A20,20,0,0,0,56,76ZM216,180a36,36,0,1,1-10.54-25.46h0A35.76,35.76,0,0,1,216,180Zm-16,0a20,20,0,1,0-5.86,14.14A19.87,19.87,0,0,0,200,180Z"/></svg></span>
+            <h3>Aufschläge pro Bauteil</h3>
+            <p>Aluminium, Klebetechnik, Vordrücken, Hohlraumkonservierung oder Pauschalpreis.</p>
+          </div>
+          <div class="cell c-small reveal">
+            <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,168H63.86c2.66-5.24,5.33-10.63,8-16.11,15,1.65,32.58-8.78,52.66-31.14,5,13.46,14.45,30.93,30.58,31.25,9.06.18,18.11-5.2,27.42-16.37C189.31,143.75,203.3,152,232,152a8,8,0,0,0,0-16c-30.43,0-39.43-10.45-40-16.11a7.67,7.67,0,0,0-5.46-7.75,8.14,8.14,0,0,0-9.25,3.49c-12.07,18.54-19.38,20.43-21.92,20.37-8.26-.16-16.66-19.52-19.54-33.42a8,8,0,0,0-14.09-3.37C101.54,124.55,88,133.08,79.57,135.29,88.06,116.42,94.4,99.85,98.46,85.9c6.82-23.44,7.32-39.83,1.51-50.1-3-5.38-9.34-11.8-22.06-11.8C61.85,24,49.18,39.18,43.14,65.65c-3.59,15.71-4.18,33.21-1.62,48s7.87,25.55,15.59,31.94c-3.73,7.72-7.53,15.26-11.23,22.41H24a8,8,0,0,0,0,16H37.41c-11.32,21-20.12,35.64-20.26,35.88a8,8,0,1,0,13.71,8.24c.15-.26,11.27-18.79,24.7-44.12H232a8,8,0,0,0,0-16ZM58.74,69.21C62.72,51.74,70.43,40,77.91,40c5.33,0,7.1,1.86,8.13,3.67,3,5.33,6.52,24.19-21.66,86.39C56.12,118.78,53.31,93,58.74,69.21Z"/></svg></span>
+            <h3>Auftrag mit Unterschrift</h3>
+            <p>Aus dem Angebot wird mit einem Tipp ein Auftrag, den dein Kunde direkt auf dem Display unterschreibt.</p>
+          </div>
+          <div class="cell c-small reveal">
+            <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,152a8,8,0,0,1-8,8H192v16h16a8,8,0,0,1,0,16H192v16a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8h32A8,8,0,0,1,224,152ZM92,172a28,28,0,0,1-28,28H56v8a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8H64A28,28,0,0,1,92,172Zm-16,0a12,12,0,0,0-12-12H56v24h8A12,12,0,0,0,76,172Zm88,8a36,36,0,0,1-36,36H112a8,8,0,0,1-8-8V152a8,8,0,0,1,8-8h16A36,36,0,0,1,164,180Zm-16,0a20,20,0,0,0-20-20h-8v40h8A20,20,0,0,0,148,180ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,0,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.69L160,51.31Z"/></svg></span>
+            <h3>Dein Logo im PDF</h3>
+            <p>Firmendaten, Bankverbindung und Logo stehen automatisch auf jedem Angebot.</p>
+          </div>
+          <div class="cell c-small reveal">
+            <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"/></svg></span>
+            <h3>Kunden und Vorgänge</h3>
+            <p>Kunden mit Fahrzeug und Kennzeichen anlegen und alle Angebote und Aufträge wiederfinden.</p>
+          </div>
+          <div class="cell c-mid reveal">
+            <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M190,192.33a8,8,0,0,1-.63,11.3A80,80,0,0,1,56.4,152H40a8,8,0,0,1,0-16H56V120H40a8,8,0,0,1,0-16H56.4A80,80,0,0,1,189.34,52.37,8,8,0,0,1,178.66,64.3,64,64,0,0,0,72.52,104H136a8,8,0,0,1,0,16H72v16h48a8,8,0,0,1,0,16H72.52a64,64,0,0,0,106.14,39.71A8,8,0,0,1,190,192.33Z"/></svg></span>
+            <h3>Für Deutschland und die Schweiz</h3>
+            <p>Rechne in Euro oder Franken, mit Schweizer Zahlenformat und frei einstellbarer Mehrwertsteuer.</p>
+            <div class="chips"><span class="chip">EUR</span><span class="chip">CHF</span><span class="chip">1'234.50</span></div>
+          </div>
+          <div class="cell c-mid reveal">
+            <span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z"/></svg></span>
+            <h3>Deine Preise, deine Regeln</h3>
+            <p>Festpreis als Rabatt, abweichender Stundenlohn pro Angebot und eigene Positionen mit Stundenangabe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="data">
+      <div class="wrap">
+        <div class="box reveal">
+          <h2>Kein Konto. Deine Daten bleiben bei dir.</h2>
+          <ul>
+            <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><div><strong>Sofort loslegen</strong><span>Keine Registrierung, kein Login. App laden und das erste Angebot erstellen.</span></div></li>
+            <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><div><strong>Auf deinem Gerät gespeichert</strong><span>Kunden und Angebote liegen lokal, nicht auf fremden Servern.</span></div></li>
+            <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M178.34,165.66,160,147.31V208a8,8,0,0,1-16,0V147.31l-18.34,18.35a8,8,0,0,1-11.32-11.32l32-32a8,8,0,0,1,11.32,0l32,32a8,8,0,0,1-11.32,11.32ZM160,40A88.08,88.08,0,0,0,81.29,88.68,64,64,0,1,0,72,216h40a8,8,0,0,0,0-16H72a48,48,0,0,1,0-96c1.1,0,2.2,0,3.29.12A88,88,0,0,0,72,128a8,8,0,0,0,16,0,72,72,0,1,1,100.8,66,8,8,0,0,0,3.2,15.34,7.9,7.9,0,0,0,3.2-.68A88,88,0,0,0,160,40Z"/></svg></span><div><strong>Sicherung und iCloud-Sync</strong><span>Komplettsicherung als Datei, auf iPhone und iPad zusätzlich über deine eigene iCloud.</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="preise">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="eyebrow">Preise</span>
+          <h2 style="margin-top:14px">Erstes Angebot gratis. Dann 7 Tage testen.</h2>
+          <p>Du spielst ein komplettes Angebot kostenlos durch. Danach testest du DentIQ Pro 7 Tage gratis und entscheidest dich erst dann.</p>
+        </div>
+        <div class="plans">
+          <div class="plan reveal">
+            <h3>Monatlich</h3>
+            <div class="price">24,99 € <small>/ Monat</small></div>
+            <div class="per">flexibel, monatlich kündbar</div>
+            <ul>
+              <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>Alle Pro-Funktionen</li>
+              <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>Unbegrenzt Kunden und Angebote</li>
+              <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>7 Tage kostenlos testen</li>
+            </ul>
+          </div>
+          <div class="plan best reveal">
+            <span class="badge">2 Monate geschenkt</span>
+            <h3>Jährlich</h3>
+            <div class="price">249,99 € <small>/ Jahr</small></div>
+            <div class="per">entspricht 20,83 € pro Monat</div>
+            <ul>
+              <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>Alle Pro-Funktionen</li>
+              <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>Unbegrenzt Kunden und Angebote</li>
+              <li><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>7 Tage kostenlos testen</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">Preise inkl. MwSt. für iPhone und iPad im deutschen App Store. In Google Play und in anderen Ländern können die Preise abweichen. Kündigung jederzeit über App Store oder Google Play.</p>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <h2 class="reveal">Häufige Fragen</h2>
+        <div class="faq-list reveal">
+          <details open>
+            <summary>Für wen ist DentIQ gedacht?</summary>
+            <p>Für Ausbeuler, PDR-Techniker und Smart-Repair-Betriebe, die Hagelschäden schnell und nachvollziehbar kalkulieren und direkt ein Angebot erstellen wollen.</p>
+          </details>
+          <details>
+            <summary>Wie rechnet DentIQ den Preis aus?</summary>
+            <p>Du tippst pro Bauteil die Dellengrößen von 10 bis 80 mm an und gibst die Anzahl ein. DentIQ ermittelt daraus die Arbeitswerte (AW) und rechnet sie mit deinem Stundenlohn und deinem Teiler (10er oder 12er) in Euro oder Franken um.</p>
+          </details>
+          <details>
+            <summary>Kann ich meine eigenen Preise verwenden?</summary>
+            <p>Ja. Stundenlohn, Teiler-Gruppe, Mehrwertsteuersatz und Währung legst du in den Einstellungen fest. Pro Angebot kannst du zusätzlich einen Festpreis oder einen abweichenden Stundenlohn vergeben.</p>
+          </details>
+          <details>
+            <summary>Brauche ich ein Konto?</summary>
+            <p>Nein. DentIQ funktioniert ohne Registrierung. Deine Kunden und Angebote liegen auf deinem Gerät.</p>
+          </details>
+          <details>
+            <summary>Was kostet DentIQ?</summary>
+            <p>Du testest DentIQ Pro 7 Tage kostenlos. Danach wählst du zwischen Monatsabo und Jahresabo. Das Jahresabo enthält 2 Monate geschenkt. Beide sind jederzeit über App Store oder Google Play kündbar.</p>
+          </details>
+          <details>
+            <summary>Funktioniert DentIQ auch in der Schweiz?</summary>
+            <p>Ja. Du kannst in den Einstellungen CHF als Währung wählen. Beträge erscheinen dann im Schweizer Format, zum Beispiel 1'234.50 CHF.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="wrap">
+        <div class="box reveal">
+          <div>
+            <h2>Die nächste Hagelsaison kommt bestimmt.</h2>
+            <p>Lade DentIQ jetzt und kalkuliere dein erstes Angebot kostenlos.</p>
+          </div>
+          <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="https://apps.apple.com/app/id6809597661"><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M223.3,169.59a8.07,8.07,0,0,0-2.8-3.4C203.53,154.53,200,134.64,200,120c0-17.67,13.47-33.06,21.5-40.67a8,8,0,0,0,0-11.62C208.82,55.74,187.82,48,168,48a72.2,72.2,0,0,0-40,12.13,71.56,71.56,0,0,0-90.71,9.09A74.63,74.63,0,0,0,16,123.4a127.06,127.06,0,0,0,40.14,89.73A39.8,39.8,0,0,0,83.59,224h87.68a39.84,39.84,0,0,0,29.12-12.57,125,125,0,0,0,17.82-24.6C225.23,174,224.33,172,223.3,169.59Zm-34.63,30.94a23.76,23.76,0,0,1-17.4,7.47H83.59a23.82,23.82,0,0,1-16.44-6.51A111.14,111.14,0,0,1,32,123,58.5,58.5,0,0,1,48.65,80.47,54.81,54.81,0,0,1,88,64h.78A55.45,55.45,0,0,1,123,76.28a8,8,0,0,0,10,0A55.44,55.44,0,0,1,168,64a70.64,70.64,0,0,1,36,10.35c-13,14.52-20,30.47-20,45.65,0,23.77,7.64,42.73,22.18,55.3A105.82,105.82,0,0,1,188.67,200.53ZM128.23,30A40,40,0,0,1,167,0h1a8,8,0,0,1,0,16h-1a24,24,0,0,0-23.24,18,8,8,0,1,1-15.5-4Z"/></svg></span>Im App Store laden</a>
+            <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.dentiq.app"><span class="icon"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M239.82,114.19,72,18.16a16,16,0,0,0-16.12,0A15.68,15.68,0,0,0,48,31.87V224.13a15.68,15.68,0,0,0,7.92,13.67,16,16,0,0,0,16.12,0l167.78-96a15.75,15.75,0,0,0,0-27.62ZM64,212.67V43.33L148.69,128Zm96-73.36,18.92,18.92-88.5,50.66ZM90.4,47.1l88.53,50.67L160,116.69ZM193.31,150l-22-22,22-22,38.43,22Z"/></svg></span>Bei Google Play laden</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 DentIQ</span>
+      <nav aria-label="Rechtliches">
+        <a href="mailto:support.dentiq@gmail.com">support.dentiq@gmail.com</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Abschnitte beim Scrollen einblenden (ohne Scroll-Listener)
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+    }
+  </script>
+</body>
+</html>
