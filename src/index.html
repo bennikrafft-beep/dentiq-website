@@ -135,6 +135,13 @@
     .btn-ghost { border-color: var(--line); background: var(--surface); color: var(--text); }
     .btn-ghost:hover { border-color: var(--gold); }
 
+    /* Offizielle Store-Badges: gleiche Höhe, Originalgrafik unverändert */
+    .store { display: inline-block; border-radius: 9px; transition: transform .2s cubic-bezier(.16,1,.3,1); }
+    .store:active { transform: scale(.98); }
+    .store img { height: 52px; width: auto; }
+    .store img[src*="google-play"] { height: 58px; margin: -3px 0; } /* PNG hat weniger Innenrand als das Apple-SVG */
+    .hero .ctas, .final .ctas { align-items: center; }
+
     /* Navigation */
     .nav {
       position: sticky; top: 0; z-index: 10;
@@ -262,8 +269,7 @@
     }
     .final h2 { max-width: 16ch; }
     .final p { color: #a1a1aa; margin-top: 12px; }
-    .final .btn-ghost { background: transparent; color: #f2f2f3; border-color: #3a3a40; }
-
+    
     footer { border-top: 1px solid var(--line); padding: 36px 0 48px; font-size: 15px; color: var(--muted); }
     footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
     footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
@@ -340,12 +346,8 @@
           <h1><span class="line">Hagelschaden kalkuliert.</span> <em class="line">Angebot verschickt.</em></h1>
           <p class="lead">Dellen pro Bauteil antippen, Preis sofort sehen und das PDF-Angebot noch beim Kunden verschicken.</p>
           <div class="ctas">
-            <a class="btn btn-primary" href="https://apps.apple.com/app/id6809597661">
-              <span class="icon">{{icon:apple-logo}}</span>Im App Store laden
-            </a>
-            <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.dentiq.app">
-              <span class="icon">{{icon:google-play-logo}}</span>Bei Google Play laden
-            </a>
+            <a class="store" href="https://apps.apple.com/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.dentiq.app"><img src="assets/badges/google-play-de.png" alt="Jetzt bei Google Play" width="134" height="52"></a>
           </div>
         </div>
         <div class="phones" aria-hidden="true">
@@ -512,8 +514,8 @@
             <p>Lade DentIQ jetzt und kalkuliere dein erstes Angebot kostenlos.</p>
           </div>
           <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap">
-            <a class="btn btn-primary" href="https://apps.apple.com/app/id6809597661"><span class="icon">{{icon:apple-logo}}</span>Im App Store laden</a>
-            <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.dentiq.app"><span class="icon">{{icon:google-play-logo}}</span>Bei Google Play laden</a>
+            <a class="store" href="https://apps.apple.com/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.dentiq.app"><img src="assets/badges/google-play-de.png" alt="Jetzt bei Google Play" width="134" height="52"></a>
           </div>
         </div>
       </div>
