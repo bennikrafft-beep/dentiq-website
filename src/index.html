@@ -31,7 +31,7 @@
     "name": "DentIQ",
     "alternateName": "DentIQ - Der Dellen Kalkulator",
     "applicationCategory": "BusinessApplication",
-    "operatingSystem": "iOS, iPadOS, Android",
+    "operatingSystem": "iOS, iPadOS",
     "description": "Hagelschaden-Kalkulator für Ausbeuler und PDR-Techniker: Dellen pro Bauteil erfassen, Preis nach Arbeitswerten berechnen und PDF-Angebote verschicken.",
     "url": "https://dentiq.cloud/",
     "image": "https://dentiq.cloud/assets/img/app-icon.png",
@@ -141,6 +141,13 @@
     .store img { height: 52px; width: auto; }
     .store img[src*="google-play"] { height: 58px; margin: -3px 0; } /* PNG hat weniger Innenrand als das Apple-SVG */
     .hero .ctas, .final .ctas { align-items: center; }
+    .soon {
+      display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 18px;
+      border: 1px dashed var(--line); border-radius: 9px;
+      color: var(--muted); font-size: 15px; font-weight: 500; white-space: nowrap;
+    }
+    .soon .icon { font-size: 22px; color: var(--gold-ink); }
+    .final .soon { border-color: #3a3a40; color: #a1a1aa; }
 
     /* Navigation */
     .nav {
@@ -346,8 +353,8 @@
           <h1><span class="line">Hagelschaden kalkuliert.</span> <em class="line">Angebot verschickt.</em></h1>
           <p class="lead">Dellen pro Bauteil antippen, Preis sofort sehen und das PDF-Angebot noch beim Kunden verschicken.</p>
           <div class="ctas">
-            <a class="store" href="https://apps.apple.com/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
-            <a class="store" href="https://play.google.com/store/apps/details?id=com.dentiq.app"><img src="assets/badges/google-play-de.png" alt="Jetzt bei Google Play" width="134" height="52"></a>
+            <a class="store" href="https://apps.apple.com/de/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
+            <span class="soon"><span class="icon">{{icon:android-logo}}</span>Android-App: in Kürze bei Google Play</span>
           </div>
         </div>
         <div class="phones" aria-hidden="true">
@@ -514,8 +521,8 @@
             <p>Lade DentIQ jetzt und kalkuliere dein erstes Angebot kostenlos.</p>
           </div>
           <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap">
-            <a class="store" href="https://apps.apple.com/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
-            <a class="store" href="https://play.google.com/store/apps/details?id=com.dentiq.app"><img src="assets/badges/google-play-de.png" alt="Jetzt bei Google Play" width="134" height="52"></a>
+            <a class="store" href="https://apps.apple.com/de/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
+            <span class="soon"><span class="icon">{{icon:android-logo}}</span>Android-App: in Kürze bei Google Play</span>
           </div>
         </div>
       </div>
