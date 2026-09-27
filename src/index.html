@@ -141,13 +141,15 @@
     .store img { height: 52px; width: auto; }
     .store img[src*="google-play"] { height: 58px; margin: -3px 0; } /* PNG hat weniger Innenrand als das Apple-SVG */
     .hero .ctas, .final .ctas { align-items: center; }
-    .soon {
-      display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 18px;
-      border: 1px dashed var(--line); border-radius: 9px;
-      color: var(--muted); font-size: 15px; font-weight: 500; white-space: nowrap;
+    .store-soon { position: relative; cursor: default; }
+    .store-soon img { opacity: .9; }
+    .soon-tag {
+      position: absolute; top: -10px; right: -8px;
+      background: var(--gold); color: var(--on-gold);
+      font-size: 12px; font-weight: 700; line-height: 1; white-space: nowrap;
+      padding: 5px 9px; border-radius: 999px;
+      box-shadow: 0 4px 12px -4px rgb(0 0 0 / .35);
     }
-    .soon .icon { font-size: 22px; color: var(--gold-ink); }
-    .final .soon { border-color: #3a3a40; color: #a1a1aa; }
 
     /* Navigation */
     .nav {
@@ -360,7 +362,7 @@
           <p class="dl-label" id="download"><span class="icon">{{icon:download-simple}}</span>Jetzt kostenlos laden und 7 Tage gratis testen</p>
           <div class="ctas">
             <a class="store" href="https://apps.apple.com/de/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
-            <span class="soon"><span class="icon">{{icon:android-logo}}</span>Android-App: in Kürze bei Google Play</span>
+            <span class="store store-soon" title="Die Android-App erscheint in Kürze bei Google Play"><img src="assets/badges/google-play-de.png" alt="Google Play: in Kürze verfügbar" width="134" height="52"><span class="soon-tag">In Kürze</span></span>
           </div>
         </div>
         <div class="phones" aria-hidden="true">
@@ -530,7 +532,7 @@
           <p class="dl-label">Jetzt kostenlos laden</p>
           <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap">
             <a class="store" href="https://apps.apple.com/de/app/id6809597661"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
-            <span class="soon"><span class="icon">{{icon:android-logo}}</span>Android-App: in Kürze bei Google Play</span>
+            <span class="store store-soon" title="Die Android-App erscheint in Kürze bei Google Play"><img src="assets/badges/google-play-de.png" alt="Google Play: in Kürze verfügbar" width="134" height="52"><span class="soon-tag">In Kürze</span></span>
           </div>
           </div>
         </div>
