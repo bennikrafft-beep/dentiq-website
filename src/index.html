@@ -31,7 +31,7 @@
     "name": "DentIQ",
     "alternateName": "DentIQ - Der Dellen Kalkulator",
     "applicationCategory": "BusinessApplication",
-    "operatingSystem": "iOS, iPadOS",
+    "operatingSystem": "iOS, iPadOS, Android",
     "description": "Hagelschaden-Kalkulator für Dellendrücker und Hageltechniker (PDR): Dellen pro Bauteil erfassen, Preis nach Arbeitswerten berechnen und PDF-Angebote verschicken.",
     "url": "https://dentiq.cloud/",
     "image": "https://dentiq.cloud/assets/img/app-icon.png",
@@ -142,15 +142,6 @@
     .store img { height: 52px; width: auto; }
     .store img[src*="google-play"] { height: 58px; margin: -3px 0; } /* PNG hat weniger Innenrand als das Apple-SVG */
     .hero .ctas, .final .ctas { align-items: center; }
-    .store-soon { position: relative; cursor: default; }
-    .store-soon img { opacity: .9; }
-    .soon-tag {
-      position: absolute; top: -10px; right: -8px;
-      background: var(--gold); color: var(--on-gold);
-      font-size: 12px; font-weight: 700; line-height: 1; white-space: nowrap;
-      padding: 5px 9px; border-radius: 999px;
-      box-shadow: 0 4px 12px -4px rgb(0 0 0 / .35);
-    }
 
     /* Navigation */
     .nav {
@@ -363,7 +354,7 @@
           <p class="dl-label" id="download"><span class="icon">{{icon:download-simple}}</span>Jetzt kostenlos laden und 7 Tage gratis testen</p>
           <div class="ctas">
             <a class="store" href="https://apps.apple.com/de/app/id6809597661?pt=129424872&amp;ct=website-oben&amp;mt=8"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
-            <span class="store store-soon" title="Die Android-App erscheint in Kürze bei Google Play"><img src="assets/badges/google-play-de.png" alt="Google Play: in Kürze verfügbar" width="134" height="52"><span class="soon-tag">In Kürze</span></span>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.dentiq.app&amp;referrer=utm_source%3Ddentiq.cloud%26utm_medium%3Dwebsite%26utm_campaign%3Dwebsite-oben"><img src="assets/badges/google-play-de.png" alt="Jetzt bei Google Play" width="134" height="52"></a>
           </div>
         </div>
         <div class="phones" aria-hidden="true">
@@ -537,7 +528,7 @@
           <p class="dl-label">Jetzt kostenlos laden</p>
           <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap">
             <a class="store" href="https://apps.apple.com/de/app/id6809597661?pt=129424872&amp;ct=website-unten&amp;mt=8"><img src="assets/badges/app-store-de.svg" alt="Laden im App Store" width="156" height="52"></a>
-            <span class="store store-soon" title="Die Android-App erscheint in Kürze bei Google Play"><img src="assets/badges/google-play-de.png" alt="Google Play: in Kürze verfügbar" width="134" height="52"><span class="soon-tag">In Kürze</span></span>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.dentiq.app&amp;referrer=utm_source%3Ddentiq.cloud%26utm_medium%3Dwebsite%26utm_campaign%3Dwebsite-unten"><img src="assets/badges/google-play-de.png" alt="Jetzt bei Google Play" width="134" height="52"></a>
           </div>
           </div>
         </div>
@@ -557,9 +548,9 @@
   </footer>
 
   <script>
-    // Auf Android gibt es noch keinen Store-Link: Button führt zum Download-Bereich
+    // Android-Geräte: "App laden" führt in den Play Store statt in den App Store
     if (/Android/i.test(navigator.userAgent)) {
-      document.getElementById("nav-download").setAttribute("href", "#download");
+      document.getElementById("nav-download").setAttribute("href", "https://play.google.com/store/apps/details?id=com.dentiq.app&referrer=utm_source%3Ddentiq.cloud%26utm_medium%3Dwebsite%26utm_campaign%3Dwebsite-navigation");
     }
 
     // Abschnitte beim Scrollen einblenden (ohne Scroll-Listener)
